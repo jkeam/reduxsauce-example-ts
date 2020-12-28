@@ -9,9 +9,6 @@ interface Props {
 }
 
 const Todo: React.FC<Props> = ({ id, onClick, removeTodo, completed, text }) => {
-//   function onClick(e: React.ChangeEvent<HTMLInputElement>) {
-    // setValue(e.target.value)
-//   }
   return (
     <tr>
         <td onClick={() => onClick(id)} style={{ textDecoration: completed ? 'line-through' : 'none' }} >

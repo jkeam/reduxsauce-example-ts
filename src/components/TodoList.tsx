@@ -1,26 +1,13 @@
 import React from 'react';
-import Todo from './Todo'
-
-interface TodoType {
-  id: string,
-  text: string,
-  completed: boolean
-}
+import TodoComponent from './Todo'
+import { Todo } from '../Types';
 
 interface Props {
-  todos: TodoType[],
-  removeTodo?: Function
+  todos: Todo[],
+  removeTodo: Function
 }
 
 const TodoList: React.FC<Props> = ({ todos, removeTodo }) => {
-  function toggleTodoInner(id: string) {
-  }
-  function removeTodoInner(id: string) {
-    if (removeTodo) {
-      removeTodo(id);
-    }
-  }
-
   return (
     <section className="section">
       {todos && todos.length > 0 &&
@@ -37,11 +24,11 @@ const TodoList: React.FC<Props> = ({ todos, removeTodo }) => {
                 </thead>
                 <tbody>
                   {todos.map(todo =>
-                    <Todo
+                    <TodoComponent
                       key={todo.id}
                       {...todo}
-                      onClick={toggleTodoInner}
-                      removeTodo={removeTodoInner}
+                      onClick={(id: string) => {}}
+                      removeTodo={(id: string) => removeTodo(id)}
                     />
                   )}
                 </tbody>
