@@ -1,6 +1,6 @@
 import { createActions, createReducer } from 'reduxsauce';
 import { AnyAction } from 'redux';
-import { TodoInput, TodoState } from '../Types'
+import { TodoType, TodoStateType } from './types';
 
 interface ActionTypes {
   [action: string]: string;
@@ -20,28 +20,37 @@ const { Types, Creators } = createActions<ActionTypes, ActionCreators>({
 export const TodosTypes = Types;
 export default Creators;
 
-export const INITIAL_STATE: TodoState = {
+export const INITIAL_STATE:TodoStateType = {
   todos: []
 };
 
-const addTodo = (state = INITIAL_STATE, todoInput: TodoInput) => {
-  const newTodo = {
-    id: todoInput.id,
-    text: todoInput.text,
-    completed: false
-  };
+export const addTodo = (state = INITIAL_STATE, todo: TodoType) => ({
+  todos: [
+    ...state.todos,
+    {
+      id: todo.id,
+      text: todo.text,
+      completed: todo.completed || false
+    }
+  ]
+});
+
+export const toggleTodo = (state: TodoStateType = INITIAL_STATE, newTodo: TodoType) => {
   return {
-    todos: [...state.todos, newTodo]
-  };
+    todos: (state.todos || []).map(todo =>
+      (todo.id === newTodo.id)
+        ? {...todo, completed: !todo.completed}
+        : todo
+    )
+  }
 };
 
-const removeTodo = (state = INITIAL_STATE, todoId: {id: string}) => {
-  return {
-    todos: (state.todos || []).filter(todo => todo.id !== todoId.id)
-  };
-};
+export const removeTodo = (state: TodoStateType = INITIAL_STATE, todoToRemove: TodoType) => ({
+  todos: (state.todos || []).filter(todo => todo.id !== todoToRemove.id)
+});
 
-export const reducer = createReducer<TodoState, AnyAction>(INITIAL_STATE, {
+export const reducer = createReducer<TodoStateType, AnyAction>(INITIAL_STATE, {
   [Types.ADD_TODO]: addTodo,
+  [Types.TOGGLE_TODO]: toggleTodo,
   [Types.REMOVE_TODO]: removeTodo
 });

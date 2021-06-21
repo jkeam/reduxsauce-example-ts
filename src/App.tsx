@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import './App.css';
 import Title from './components/Title';
-import TodoListContainer from './containers/TodoListContainer';
-import AddTodoContainer from './containers/AddTodoContainer';
+import AddTodo from './containers/AddTodo';
+import Reset from './containers/Reset';
+import VisibleTodoList from './containers/VisibleTodoList';
 
-function App() {
-  return (
-    <div className="container">
-      <Title />
-      <AddTodoContainer />
-      <TodoListContainer />
-    </div>
-  );
-}
+const App: FC = (): ReactElement => (
+  <div className="container">
+    <Title />
+    <AddTodo />
+    <VisibleTodoList />
+    <Reset />
+  </div>
+);
 
 export default App;

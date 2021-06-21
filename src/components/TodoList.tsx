@@ -1,43 +1,46 @@
-import React from 'react';
-import TodoComponent from './Todo'
-import { Todo } from '../Types';
+import React, { FC, ReactElement } from 'react'
+import Todo from './Todo'
+import TodoFilter from './TodoFilter'
+import { TodoType } from '../redux/types';
 
-interface Props {
-  todos: Todo[],
-  removeTodo: Function
-}
-
-const TodoList: React.FC<Props> = ({ todos, removeTodo }) => {
-  return (
-    <section className="section">
-      {todos && todos.length > 0 &&
-        <div className="card article">
-          <div className="card-content">
-            <div className="content article-body">
-              <h1 className="title">All Todos</h1>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Item</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {todos.map(todo =>
-                    <TodoComponent
-                      key={todo.id}
-                      {...todo}
-                      onClick={(id: string) => {}}
-                      removeTodo={(id: string) => removeTodo(id)}
-                    />
-                  )}
-                </tbody>
-              </table>
-            </div>
+type TodoEventType = (id: string) => void;
+type Props = {
+  todos: TodoType[],
+  toggleTodo: TodoEventType,
+  removeTodo: TodoEventType,
+  allTodoCount: number
+};
+const TodoList: FC<Props> = ({ todos, toggleTodo, removeTodo, allTodoCount }): ReactElement => (
+  <section className="section">
+    {allTodoCount > 0 &&
+      <div className="card article">
+        <div className="card-content">
+          <div className="content article-body">
+            <h1 className="title">All Todos</h1>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {todos.map(todo =>
+                  <Todo
+                    key={todo.id}
+                    {...todo}
+                    onClick={() => toggleTodo(todo.id)}
+                    removeTodo={() => removeTodo(todo.id)}
+                  />
+                )}
+              </tbody>
+            </table>
+            <TodoFilter />
           </div>
         </div>
-      }
-    </section>
-  );
-}
+      </div>
+    }
+  </section>
+);
+
 export default TodoList;

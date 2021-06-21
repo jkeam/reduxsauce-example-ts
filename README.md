@@ -1,26 +1,22 @@
 # Reduxsauce Example TS
 
-This repo is created to illustrate how to use reduxsauce using Typescript.
+Todo project to demonstrate how to use Reduxsauce and Typescript together.
 
-
-## Prerequisuites
-1.  Node v12+
-2.  Yarn v1.22+
-3.  Serve v11.x+ - Only needed for production serving. `yarn global add serve`
-
+## Prerequisite
+1.  Node v16+
+2.  yarn 1.22+
 
 ## Setup
 ```
-# install deps
 yarn
+```
 
-# start dev server
+## Running
+```
 yarn start
 ```
 
-
-## Production
+## Testing
 ```
-yarn build
-serve -s build -l 5000  # app is now running on port 5000, this port is the default port
+yarn test
 ```

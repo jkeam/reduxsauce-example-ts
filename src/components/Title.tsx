@@ -1,17 +1,14 @@
-import React from 'react'
+import React, { FC, ReactElement } from 'react';
 
-interface Props {}
-const Title: React.FC<Props> = () => {
-  return (
-    <section className="hero">
-        <div className="hero-body">
-        <div className="container">
-            <h1 className="title">Reduxsauce Example Typescript</h1>
-            <h2 className="subtitle">Todo App Using React, Redux, and Reduxsauce</h2>
-        </div>
-        </div>
-    </section>
-  );
-};
+const Title: FC = (): ReactElement => (
+  <section className="hero">
+    <div className="hero-body">
+      <div className="container">
+        <h1 className="title">Reduxsauce TypeScript Example</h1>
+        <h2 className="subtitle">Todo App using TypeScript, React, Redux, and Reduxsauce</h2>
+      </div>
+    </div>
+  </section>
+);
 
 export default Title;
