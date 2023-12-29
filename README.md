@@ -3,7 +3,7 @@
 Todo project to demonstrate how to use Reduxsauce and Typescript together.
 
 ## Prerequisite
-1.  Node v16+
+1.  Node v20+
 2.  yarn 1.22+
 
 ## Setup
