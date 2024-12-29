@@ -3,7 +3,7 @@ import { render } from './test-utils';
 import App from './App';
 
 test('renders title', () => {
-  const { getByText } = render(<App />, { initialState: {} });
+  const { getByText } = render(<App />, {});
   const element = getByText(/Reduxsauce Typescript Example/i);
   expect(element).toBeInTheDocument();
 });
