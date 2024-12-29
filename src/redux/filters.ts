@@ -1,6 +1,6 @@
 import { VisibilityFilters } from '../constants';
 import { createActions, createReducer } from 'reduxsauce';
-import { AnyAction } from 'redux';
+import { Action } from 'redux';
 import { FilterStateType } from './types';
 
 interface ActionTypes {
@@ -8,7 +8,7 @@ interface ActionTypes {
 }
 
 interface ActionCreators {
-  [action: string]: (...args: any[]) => AnyAction;
+  [action: string]: (...args: any[]) => Action;
 }
 
 const { Types, Creators } = createActions<ActionTypes, ActionCreators>({
@@ -23,6 +23,6 @@ export const INITIAL_STATE: FilterStateType = {
 };
 
 export const setFilter = (state: FilterStateType = INITIAL_STATE, { filter }: FilterStateType) => ({ filter });
-export const reducer = createReducer<FilterStateType, AnyAction>(INITIAL_STATE, {
+export const reducer = createReducer<FilterStateType, Action>(INITIAL_STATE, {
   [Types.SET_FILTER]: setFilter
 });

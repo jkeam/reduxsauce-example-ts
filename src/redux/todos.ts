@@ -1,5 +1,5 @@
 import { createActions, createReducer } from 'reduxsauce';
-import { AnyAction } from 'redux';
+import { Action } from 'redux';
 import { TodoType, TodoStateType } from './types';
 
 interface ActionTypes {
@@ -7,7 +7,7 @@ interface ActionTypes {
 }
 
 interface ActionCreators {
-  [action: string]: (...args: any[]) => AnyAction;
+  [action: string]: (...args: any[]) => Action;
 }
 
 const { Types, Creators } = createActions<ActionTypes, ActionCreators>({
@@ -49,7 +49,7 @@ export const removeTodo = (state: TodoStateType = INITIAL_STATE, todoToRemove: T
   todos: (state.todos || []).filter(todo => todo.id !== todoToRemove.id)
 });
 
-export const reducer = createReducer<TodoStateType, AnyAction>(INITIAL_STATE, {
+export const reducer = createReducer<TodoStateType, Action>(INITIAL_STATE, {
   [Types.ADD_TODO]: addTodo,
   [Types.TOGGLE_TODO]: toggleTodo,
   [Types.REMOVE_TODO]: removeTodo
